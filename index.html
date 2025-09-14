@@ -27,6 +27,25 @@
             <div class="login-card">
                 <h1 class="login-title">Login Now</h1>
                 <form id="loginForm" class="login-form">
+                    <div class="role-selection">
+                        <label>Login As *</label>
+                        <div class="role-options-inline">
+                            <div class="role-option">
+                                <input type="radio" id="studentRole" name="role" value="student" required>
+                                <label for="studentRole">
+                                    <i class="fas fa-user-graduate"></i>
+                                    Student
+                                </label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" id="teacherRole" name="role" value="teacher" required>
+                                <label for="teacherRole">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    Teacher
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="username">Username *</label>
                         <input type="text" id="username" name="username" placeholder="Enter your Username" required>

@@ -162,6 +162,70 @@ body {
     color: #9ca3af;
 }
 
+/* Role Selection */
+.role-selection {
+    margin-bottom: 25px;
+}
+
+.role-selection > label {
+    display: block;
+    margin-bottom: 12px;
+    color: #374151;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.role-options-inline {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.role-option {
+    flex: 1;
+}
+
+.role-option input[type="radio"] {
+    display: none;
+}
+
+.role-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.role-option label i {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #6b7280;
+}
+
+.role-option input[type="radio"]:checked + label {
+    border-color: #20b2aa;
+    background: #e6fffa;
+    color: #20b2aa;
+}
+
+.role-option input[type="radio"]:checked + label i {
+    color: #20b2aa;
+}
+
+.role-option label:hover {
+    border-color: #20b2aa;
+    background: #f0fdfa;
+}
+
 .remember-me {
     display: flex;
     align-items: center;
@@ -720,6 +784,20 @@ body {
     
     .subtitle {
         font-size: 0.9rem;
+    }
+    
+    .role-options-inline {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .role-option label {
+        padding: 12px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .role-option label i {
+        font-size: 1.2rem;
     }
 }
 

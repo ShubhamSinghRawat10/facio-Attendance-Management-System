@@ -35,12 +35,21 @@ function handleLogin(e) {
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const role = document.querySelector('input[name="role"]:checked');
     
-    if (username && password) {
+    if (username && password && role) {
         currentUser = { username: username, password: password };
-        showPage('rolePage');
+        currentRole = role.value;
+        
+        if (currentRole === 'student') {
+            document.getElementById('studentName').textContent = currentUser.username;
+            showPage('studentDashboard');
+        } else if (currentRole === 'teacher') {
+            document.getElementById('teacherName').textContent = currentUser.username;
+            showPage('teacherDashboard');
+        }
     } else {
-        alert('Please enter both username and password');
+        alert('Please fill in all fields and select a role');
     }
 }
 
