@@ -658,6 +658,13 @@ html, body {
     margin-top: 20px;
 }
 
+/* Generic responsive wrapper for tables */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .attendance-table th,
 .attendance-table td {
     padding: 12px;
@@ -814,17 +821,10 @@ html, body {
         padding: 20px;
     }
 
-    /* Make tables scroll horizontally on small screens */
-    .attendance-table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    .attendance-table thead, .attendance-table tbody, .attendance-table tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
+    /* Make cells wrap and avoid overlaps */
+    .attendance-table th,
+    .attendance-table td {
+        white-space: normal;
     }
 }
 

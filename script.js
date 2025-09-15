@@ -10,14 +10,14 @@ const mockAttendanceData = [
     { date: '2024-01-19', subject: 'Computer Science', status: 'Present', time: '02:00 PM' }
 ];
 
-const mockStudents = [
+let mockStudents = [
     { id: 1, name: 'John Doe', email: 'john@example.com', class: '12A', rollNumber: '001' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', class: '12A', rollNumber: '002' },
     { id: 3, name: 'Mike Johnson', email: 'mike@example.com', class: '12B', rollNumber: '003' },
     { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', class: '12A', rollNumber: '004' }
 ];
 
-const mockCorrectionRequests = [
+let mockCorrectionRequests = [
     { id: 1, studentName: 'John Doe', date: '2024-01-16', subject: 'Physics', reason: 'Was present but marked absent', status: 'Pending' },
     { id: 2, studentName: 'Jane Smith', date: '2024-01-17', subject: 'Chemistry', reason: 'Late due to traffic', status: 'Approved' },
     { id: 3, studentName: 'Mike Johnson', date: '2024-01-18', subject: 'English', reason: 'Technical issue with system', status: 'Pending' }
@@ -111,26 +111,28 @@ function showAttendance() {
                 <span class="number late">${mockAttendanceData.filter(a => a.status === 'Late').length}</span>
             </div>
         </div>
-        <table class="attendance-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Subject</th>
-                    <th>Status</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${mockAttendanceData.map(record => `
+        <div class="table-responsive">
+            <table class="attendance-table">
+                <thead>
                     <tr>
-                        <td>${record.date}</td>
-                        <td>${record.subject}</td>
-                        <td class="status-${record.status.toLowerCase()}">${record.status}</td>
-                        <td>${record.time}</td>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Time</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${mockAttendanceData.map(record => `
+                        <tr>
+                            <td>${record.date}</td>
+                            <td>${record.subject}</td>
+                            <td class="status-${record.status.toLowerCase()}">${record.status}</td>
+                            <td>${record.time}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
     `;
     const style = document.createElement('style');
     style.textContent = `
@@ -193,26 +195,28 @@ function showCorrectionRequests() {
         </div>
         <div class="request-history">
             <h3>Your Previous Requests</h3>
-            <table class="attendance-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Subject</th>
-                        <th>Reason</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${mockCorrectionRequests.map(request => `
+            <div class="table-responsive">
+                <table class="attendance-table">
+                    <thead>
                         <tr>
-                            <td>${request.date}</td>
-                            <td>${request.subject}</td>
-                            <td>${request.reason}</td>
-                            <td class="status-${request.status.toLowerCase()}">${request.status}</td>
+                            <th>Date</th>
+                            <th>Subject</th>
+                            <th>Reason</th>
+                            <th>Status</th>
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${mockCorrectionRequests.map(request => `
+                            <tr>
+                                <td>${request.date}</td>
+                                <td>${request.subject}</td>
+                                <td>${request.reason}</td>
+                                <td class="status-${request.status.toLowerCase()}">${request.status}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
         </div>
     `;
     
@@ -235,46 +239,54 @@ function showCorrectionApproval() {
     const content = document.getElementById('teacherContent');
     content.innerHTML = `
         <h2>Correction Request Management</h2>
-        <table class="attendance-table">
-            <thead>
-                <tr>
-                    <th>Student</th>
-                    <th>Date</th>
-                    <th>Subject</th>
-                    <th>Reason</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${mockCorrectionRequests.map(request => `
+        <div class="table-responsive">
+            <table class="attendance-table">
+                <thead>
                     <tr>
-                        <td>${request.studentName}</td>
-                        <td>${request.date}</td>
-                        <td>${request.subject}</td>
-                        <td>${request.reason}</td>
-                        <td class="status-${request.status.toLowerCase()}">${request.status}</td>
-                        <td>
-                            ${request.status === 'Pending' ? `
-                                <button class="btn" onclick="approveRequest(${request.id})">Approve</button>
-                                <button class="btn btn-secondary" onclick="declineRequest(${request.id})">Decline</button>
-                            ` : 'Processed'}
-                        </td>
+                        <th>Student</th>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${mockCorrectionRequests.map(request => `
+                        <tr>
+                            <td>${request.studentName}</td>
+                            <td>${request.date}</td>
+                            <td>${request.subject}</td>
+                            <td>${request.reason}</td>
+                            <td class="status-${request.status.toLowerCase()}">${request.status}</td>
+                            <td>
+                                ${request.status === 'Pending' ? `
+                                    <button class="btn" onclick="approveRequest(${request.id})">Approve</button>
+                                    <button class="btn btn-secondary" onclick="declineRequest(${request.id})">Decline</button>
+                                ` : 'Processed'}
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
     `;
 }
 
 function approveRequest(requestId) {
-   
+    const idx = mockCorrectionRequests.findIndex(r => r.id === requestId);
+    if (idx !== -1) {
+        mockCorrectionRequests[idx].status = 'Approved';
+    }
     alert('Request approved successfully!');
     showCorrectionApproval(); 
 }
 
 function declineRequest(requestId) {
-    
+    const idx = mockCorrectionRequests.findIndex(r => r.id === requestId);
+    if (idx !== -1) {
+        mockCorrectionRequests[idx].status = 'Declined';
+    }
     alert('Request declined.');
     showCorrectionApproval(); 
 }
@@ -417,31 +429,33 @@ function showStudentManagement() {
         <div class="student-actions">
             <button class="btn" onclick="showAddStudentForm()">Add New Student</button>
         </div>
-        <table class="attendance-table">
-            <thead>
-                <tr>
-                    <th>Roll Number</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Class</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${mockStudents.map(student => `
+        <div class="table-responsive">
+            <table class="attendance-table">
+                <thead>
                     <tr>
-                        <td>${student.rollNumber}</td>
-                        <td>${student.name}</td>
-                        <td>${student.email}</td>
-                        <td>${student.class}</td>
-                        <td>
-                            <button class="btn" onclick="editStudent(${student.id})">Edit</button>
-                            <button class="btn btn-secondary" onclick="deleteStudent(${student.id})">Delete</button>
-                        </td>
+                        <th>Roll Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Class</th>
+                        <th>Actions</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${mockStudents.map(student => `
+                        <tr>
+                            <td>${student.rollNumber}</td>
+                            <td>${student.name}</td>
+                            <td>${student.email}</td>
+                            <td>${student.class}</td>
+                            <td>
+                                <button class="btn" onclick="editStudent(${student.id})">Edit</button>
+                                <button class="btn btn-secondary" onclick="deleteStudent(${student.id})">Delete</button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
     `;
 }
 
@@ -489,16 +503,61 @@ function handleAddStudent(e) {
     const studentClass = document.getElementById('studentClass').value;
     const rollNumber = document.getElementById('studentRoll').value;
     
+    const newId = mockStudents.length ? Math.max(...mockStudents.map(s => s.id)) + 1 : 1;
+    mockStudents.push({ id: newId, name, email, class: studentClass, rollNumber });
     alert('Student added successfully!');
     showStudentManagement(); 
 }
 
 function editStudent(studentId) {
-    alert('Edit functionality would open here for student ID: ' + studentId);
+    const student = mockStudents.find(s => s.id === studentId);
+    if (!student) return;
+    const content = document.getElementById('teacherContent');
+    content.innerHTML = `
+        <h2>Edit Student</h2>
+        <form id="editStudentForm" class="form-container">
+            <div class="form-group">
+                <label for="editStudentName">Full Name</label>
+                <input type="text" id="editStudentName" value="${student.name}" required>
+            </div>
+            <div class="form-group">
+                <label for="editStudentEmail">Email</label>
+                <input type="email" id="editStudentEmail" value="${student.email}" required>
+            </div>
+            <div class="form-group">
+                <label for="editStudentClass">Class</label>
+                <select id="editStudentClass" required>
+                    <option value="">Select Class</option>
+                    <option value="12A" ${student.class === '12A' ? 'selected' : ''}>12A</option>
+                    <option value="12B" ${student.class === '12B' ? 'selected' : ''}>12B</option>
+                    <option value="12C" ${student.class === '12C' ? 'selected' : ''}>12C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editStudentRoll">Roll Number</label>
+                <input type="text" id="editStudentRoll" value="${student.rollNumber}" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn">Save Changes</button>
+                <button type="button" class="btn btn-secondary" onclick="showStudentManagement()">Cancel</button>
+            </div>
+        </form>
+    `;
+
+    document.getElementById('editStudentForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        student.name = document.getElementById('editStudentName').value;
+        student.email = document.getElementById('editStudentEmail').value;
+        student.class = document.getElementById('editStudentClass').value;
+        student.rollNumber = document.getElementById('editStudentRoll').value;
+        alert('Student updated successfully!');
+        showStudentManagement();
+    });
 }
 
 function deleteStudent(studentId) {
     if (confirm('Are you sure you want to delete this student?')) {
+        mockStudents = mockStudents.filter(s => s.id !== studentId);
         alert('Student deleted successfully!');
         showStudentManagement(); 
     }
