@@ -547,7 +547,7 @@ html, body {
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* allow table scroll on small screens */
+    overflow-x: auto; 
 }
 
 .welcome-message {
@@ -658,7 +658,6 @@ html, body {
     margin-top: 20px;
 }
 
-/* Generic responsive wrapper for tables */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -821,7 +820,6 @@ html, body {
         padding: 20px;
     }
 
-    /* Make cells wrap and avoid overlaps */
     .attendance-table th,
     .attendance-table td {
         white-space: normal;
@@ -876,7 +874,7 @@ html, body {
     .attendance-table th,
     .attendance-table td {
         padding: 10px 8px;
-        white-space: nowrap; /* prevent cramped multi-line cells; scroll instead */
+        white-space: nowrap; 
     }
 }
 
