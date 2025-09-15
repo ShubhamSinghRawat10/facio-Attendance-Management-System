@@ -29,7 +29,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('bgimage.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('bgimage.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -302,7 +302,7 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('bgimage.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('bgimage.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -384,7 +384,7 @@ body {
 
 .dashboard-container {
     min-height: 100vh;
-    background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('bgimage.jpg');
+    background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('bgimage.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
